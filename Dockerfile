@@ -1,11 +1,11 @@
 FROM ubuntu
 
-RUN apt-get update && apt-get install -y apache2
+RUN sudo apt-get update && apt-get install -y apache2
 
 
-ADD new/  /var/www/html/
+ADD sudo new/  /var/www/html/
 
-RUN chmod +rwx /var/www/html/
+RUN sudo chmod +rwx /var/www/html/
 
 
 CMD apachectl -D FOREGROUND
