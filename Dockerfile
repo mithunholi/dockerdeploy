@@ -7,7 +7,6 @@ ADD new/  /var/www/html/
 
 RUN chmod +rwx /var/www/html/
 
-EXPOSE 80
 
 CMD apachectl -D FOREGROUND
 
