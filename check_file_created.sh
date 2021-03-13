@@ -35,3 +35,19 @@ FROM nginx
 ARG fileName
 RUN echo $fileName
 ADD $fileName/ /usr/share/nginx/html
+
+
+while true
+do 
+
+dir=$(inotifywait -r -e create /home/ubuntu)
+echo "the dirname is"
+echo $dir
+folderName=${dir#"/home/ubuntu/ CREATE,ISDIR "}
+echo "the dirname is"$folderName
+cp $folderName -r /tmp
+sudo docker build -t $folderName --build-arg fileName=$folderName .
+sudo docker tag $folderName ecmithun/automation:$folderName
+sudo docker login -u "ecmithun" -p "mithun@1234" docker.io
+sudo docker push ecmithun/automation:$folderName
+done  
